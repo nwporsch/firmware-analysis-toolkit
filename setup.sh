@@ -8,13 +8,21 @@ sudo apt update
 # a separate install will be triggered.
 ###
 
-if [[ $(apt-cache search lsb-core) ]]; then
+if [ $(apt-cache search lsb-core) ]
+then
 	sudo apt install -y lsb-core
 fi
 
 sudo apt install -y python3-pip python3-pexpect unzip busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils wget tar
 
 echo "Installing binwalk"
+# Check to see if binwalk folder exists and if so remove it then redownload
+if ( test -d "./binwalk" & echo "Binwalk folder exists")
+then
+	rm -rf binwalk
+	echo "Removing it then redownloading."
+fi
+
 git clone --depth=1 https://github.com/ReFirmLabs/binwalk.git
 cd binwalk
 
