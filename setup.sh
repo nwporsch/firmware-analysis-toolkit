@@ -29,8 +29,11 @@ cd binwalk
 # Temporary fix for sasquatch failing to install
 git pull origin pull/601/head
 
+
 # Change to python3 in deps.sh to allow installation on Ubuntu 20.04 (binwalk commit 2b78673)
 sed -i '/REQUIRED_UTILS="wget tar python"/c\REQUIRED_UTILS="wget tar python3"' deps.sh
+# Check to see if qt5base-dev package exists and if not change it to qtbase5-dev
+sed -i 's/qt5base-dev/qtbase5-dev/g' deps.sh
 sudo ./deps.sh --yes
 sudo python3 ./setup.py install
 sudo -H pip3 install git+https://github.com/ahupp/python-magic
