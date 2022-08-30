@@ -4,8 +4,8 @@ set -e
 sudo apt update
 
 ###
-# In order for this to run in newer versions of linux lsb-core is no longer required. If the package is needed the
-# a sepearte install will be triggered.
+# In order for this to run in newer versions of Linux, lsb-core is no longer required. If the package is needed 
+# a separate install will be triggered.
 ###
 
 if [[ $(apt-cache search lsb-core) ]]; then
