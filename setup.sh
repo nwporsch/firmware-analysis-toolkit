@@ -38,7 +38,28 @@ sudo ./deps.sh --yes
 sudo python3 ./setup.py install
 sudo -H pip3 install git+https://github.com/ahupp/python-magic
 sudo -H pip3 install git+https://github.com/sviehb/jefferson
+chmod +x ./src/binwalk
 cd ..
+
+# Check to see if LinPEAS folder exists and if so remove it then redownload
+if ( test -d "./linpeas" & echo "Linpeas folder exists")
+then
+	rm -rf linpeas
+	echo "Removing it then redownloading."
+fi
+
+mkdir linpeas
+cd linpeas
+wget "https://github.com/carlospolop/PEASS-ng/releases/download/20220904/linpeas.sh"
+chmod +x linpeas.sh
+cd ..
+
+# Check to see if firmadyne folder exists and if so remove it then redownload
+if ( test -d "./firmadyne" & echo "Firmadyne folder exists")
+then
+	rm -rf firmadyne
+	echo "Removing it then redownloading."
+fi
 
 echo "Installing firmadyne"
 # tested with firmadyne commit bcd8bc0

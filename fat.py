@@ -146,7 +146,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("firm_path", help="The path to the firmware image", type=str)
     parser.add_argument("-q", "--qemu", metavar="qemu_path", help="The qemu version to use (must exist within qemu-builds directory). If not specified, the qemu version installed system-wide will be used", type=str)
+    parser.add_argument("-p", "--peas", action='store_true', help="Runs linPEAS against the firmadyne")
+
     args = parser.parse_args()
+
+    if args.peas:
+        path = os.path.abspath(os.path.join("linpeas",(f"firm_{args.firm_path.split('.')[0]}")))
+        os.makedirs(path)
+        path = path + "/extracted"
+        os.makedirs(path)
 
     qemu_ver = args.qemu
     qemu_dir = None
